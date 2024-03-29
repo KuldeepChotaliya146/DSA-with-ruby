@@ -26,6 +26,8 @@ def second_largest(arr)
   second_largest
 end
 
+# You can also do this solution first sort the array and find the largest element then iterate the array in reverse order find first element who is lesser than largest.
+
 p "find second larget number in array--->#{second_largest([2,36,4,6,4,32,63,9,23])}"
 
 # Check array is sorted or not
