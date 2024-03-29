@@ -45,3 +45,29 @@ end
 p "check array is sorted or not---->#{is_sorted?([12,12,13,13,14])}"
 
 # Remove duplicates from the sorted array
+
+def remove_duplicate(arr)
+  i = 0
+  for j in (i+1)..(arr.size - 1)
+    if arr[i] != arr[j]
+      arr[i+1] = arr[j]
+      i = i + 1
+    end
+  end
+  return i + 1
+end
+
+p "remove duplicate from array---->#{remove_duplicate([12,12,13,13,14])}"
+
+# left rotate the array by 1 place
+
+def left_rotate_by_1(arr)
+  temp = arr[0]
+  for i in (1..arr.size - 1)
+    arr[i - 1] = arr[i]
+  end
+  arr[arr.size - 1] = temp
+  arr
+end
+
+p "left rotate array by 1 place--->#{left_rotate_by_1([1,2,4,5,2,6,7])}"
