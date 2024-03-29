@@ -71,3 +71,44 @@ def left_rotate_by_1(arr)
 end
 
 p "left rotate array by 1 place--->#{left_rotate_by_1([1,2,4,5,2,6,7])}"
+
+# left rotate the array by D places
+
+def left_rotate(arr, d)
+  d = d % arr.size
+  while d > 0
+    left_rotate_by_1(arr)
+    d = d - 1
+  end
+  arr
+end
+
+p "left rotate array by D place--->#{left_rotate([1,2,4,5,2,6,7], 4)}"
+
+# right rotate array by 1 place
+
+def right_rotate_by_1(arr)
+  temp = arr[-1]
+  index = arr.size - 1
+  while index >= 1
+    arr[index] = arr[index - 1]
+    index -= 1
+  end
+  arr[0] = temp
+  arr
+end
+
+p "right rotate array by 1 place--->#{right_rotate_by_1([1,2,4,5,2,6,7])}"
+
+# right rotate by D places
+
+def right_rotate(arr, d)
+  d = d % arr.size
+  while d > 0
+    right_rotate_by_1(arr)
+    d = d - 1
+  end
+  arr
+end
+
+p "right rotate array by D place--->#{right_rotate([1,2,4,5,2,6,7], 3)}"
