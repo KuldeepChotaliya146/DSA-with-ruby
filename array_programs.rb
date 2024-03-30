@@ -112,3 +112,78 @@ def right_rotate(arr, d)
 end
 
 p "right rotate array by D place--->#{right_rotate([1,2,4,5,2,6,7], 3)}"
+
+# Move zeros to end in array
+
+# first find index of first zero. then iterate from first_zero_index + 1 to arr.size - 1
+
+def move_zeros(arr)
+  first_zero_index = -1
+
+  for i in (0..arr.size - 1)
+    if arr[i] == 0
+      first_zero_index = i
+      break
+    end
+  end
+
+  for i in (first_zero_index+1..arr.size - 1)
+    if arr[i] != 0
+      arr[i], arr[first_zero_index] = arr[first_zero_index], arr[i]
+      first_zero_index+=1
+    end
+  end
+  arr
+end
+
+p "Move zeros to end---->#{move_zeros([1,2,4,7,80,0,2,7,0,0,0,45,7])}"
+
+
+# Find missing number in array
+
+def find_missing_num(arr, size)
+  for i in (1..size)
+    found = 0
+    for j in arr
+      if (i == j)
+        found = 1
+        break
+      end
+    end
+    return i if (found == 0)
+  end
+end
+
+p "Find missing number--->#{find_missing_num([1,2,3,4], 5)}"
+
+# Maximum counsecutive 1 in array
+
+def counsecutive_ones(arr)
+  maximum = 0
+  count = 0
+  for i in arr
+    if i == 1
+      count += 1
+      maximum = count
+    else
+      count = 0
+    end
+  end
+  maximum
+end
+
+p "maximum counsecutive 1 in array---->#{counsecutive_ones([0,1,1,1,0,1,1,0,1,0,1,1,1,1,1])}"
+
+# Find the number who appears once, and others twice
+
+def find_numbers_only_once(arr)
+  hash = Hash.new(0)
+  for i in arr
+    hash[i] += 1
+  end
+  for k,v in hash
+    return k if v == 1
+  end
+end
+
+p "Find the number who appears once, and others twice-----> #{find_numbers_only_once([1,2,3,3,4,2,4])}"
