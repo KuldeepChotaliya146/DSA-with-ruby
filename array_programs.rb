@@ -164,7 +164,7 @@ def counsecutive_ones(arr)
   for i in arr
     if i == 1
       count += 1
-      maximum = count
+      maximum = count if count > maximum
     else
       count = 0
     end
@@ -172,7 +172,7 @@ def counsecutive_ones(arr)
   maximum
 end
 
-p "maximum counsecutive 1 in array---->#{counsecutive_ones([0,1,1,1,0,1,1,0,1,0,1,1,1,1,1])}"
+p "maximum counsecutive 1 in array---->#{counsecutive_ones([0,1,1,1,0,1,1,0,1,0,1,1])}"
 
 # Find the number who appears once, and others twice
 
@@ -187,3 +187,18 @@ def find_numbers_only_once(arr)
 end
 
 p "Find the number who appears once, and others twice-----> #{find_numbers_only_once([1,2,3,3,4,2,4])}"
+
+
+# create all sub arrays
+
+def subarrays(arr)
+  result = []
+  for i in (0..arr.size - 1)
+    for j in (i..arr.size - 1)
+      result << arr[i..j]
+    end
+  end
+  result
+end
+
+p "Create all sub arrays---->#{subarrays([1,2,3,4,5,6,7,8,9,10])}"
