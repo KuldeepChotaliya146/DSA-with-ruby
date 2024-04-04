@@ -15,7 +15,7 @@ def next_permutation(nums)
 
   # If we got breaking_point_index still -1 then it is the biggest possible permutation, so to get the next permutation, we just reverse it
   if breaking_point_index == -1
-    return nums.reverse
+    return nums.reverse!
   end
 
   # iterate from the end find element which is just greater than breaking_point element and swap them
