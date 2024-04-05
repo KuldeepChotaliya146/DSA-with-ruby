@@ -1,10 +1,10 @@
 class Node
-  attr_accessor :data, :prev_node, :next_node
+  attr_accessor :data, :next_node, :prev_node
 
   def initialize(data)
     @data = data
-    @prev_node = nil
     @next_node = nil
+    @prev_node = nil
   end
 end
 
@@ -18,20 +18,18 @@ class DoubleLinkedList
 
   def append(data)
     new_node = Node.new(data)
-
     if @head.nil?
       @head = new_node
       @tail = new_node
     else
-      new_node.prev_node = @tail
       @tail.next_node = new_node
+      new_node.prev_node = @tail
       @tail = new_node
     end
   end
 
   def prepend(data)
     new_node = Node.new(data)
-
     if @head.nil?
       @head = new_node
       @tail = new_node
@@ -40,6 +38,24 @@ class DoubleLinkedList
       @head.prev_node = new_node
       @head = new_node
     end
+  end
+
+  def print_list
+    current = @head
+    while current
+      print "#{current.data} -> "
+      current = current.next_node
+    end
+    puts "nil"
+  end
+
+  def reverse_print
+    current = @tail
+    while current
+      print "#{current.data} -> "
+      current = current.prev_node
+    end
+    puts "nil"
   end
 
   def delete(data)
@@ -59,36 +75,59 @@ class DoubleLinkedList
           current.prev_node.next_node = current.next_node
           current.next_node.prev_node = current.prev_node
         end
+        return # Break out of the loop after deleting the node
       end
-
       current = current.next_node
-    end
+    end  
   end
 
-  def print_list
+  def insert_after(node_no, data)
+    new_node = Node.new(data)
+    node_count = 0
     current = @head
     while current
-      print "#{current.data} ->"
+      node_count += 1
+      if node_count == node_no
+        new_node.next_node = current.next_node
+        new_node.prev_node = current
+        current.next_node&.prev_node = new_node
+        current.next_node = new_node
+        return # Break out of the loop after inserting the node
+      end
       current = current.next_node
     end
-    print "nil"
+    puts "Node number out of range." if node_count < node_no
   end
 
-  def print_reverse_list
-    current = @tail
+  def insert_before(node_no, data)
+    new_node = Node.new(data)
+    node_count = 0
+    current = @head
     while current
-      print "#{current.data} ->"
-      current = current.prev_node
+      node_count += 1
+      if node_count == node_no
+        new_node.next_node = current
+        new_node.prev_node = current.prev_node
+        current.prev_node&.next_node = new_node
+        current.prev_node = new_node
+        if current == @head
+          @head = new_node
+        end
+        return
+      end
+      current = current.next_node
     end
-    print "nil"
+    puts "Node number out of range." if node_count < node_no
   end
 end
 
-list = DoubleLinkedList.new
-list.append(1)
-list.append(2)
-list.prepend(0)
-list.append(3)
-list.delete(2)
-list.print_list
-list.print_reverse_list
+dll = DoubleLinkedList.new
+dll.append(1)
+dll.append(2)
+dll.append(3)
+dll.prepend(0)
+dll.delete(2)
+dll.insert_after(2, 2) # node, data
+dll.insert_before(3, 25)
+dll.print_list
+dll.reverse_print
