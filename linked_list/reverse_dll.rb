@@ -65,7 +65,7 @@ class DoubleLinkedList
       current.next_node = current.prev_node
       current.prev_node = temp
       @tail = current if current.prev_node.nil? # Update tail to the last node
-      current = temp # Move to the next node
+      current = current.prev_node # Move to the next node
     end
     @head, @tail = @tail, @head # Swap head and tail pointers
   end  
