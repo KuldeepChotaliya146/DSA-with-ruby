@@ -32,4 +32,4 @@ p "3sum problem----->#{three_sum([-1,0,1,2,-1,-4])}"
 
 # [-4, -1, -1, 0, 1, 2, 4]
 #   i   j               k
-# -4 + -1 + 4 = -1
+# -4 + -1 + 4 = -1 so for sum needs to be zero we need to increment j because our array is sorted and we need increment our some than we need to increase our num
